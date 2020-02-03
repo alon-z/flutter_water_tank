@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import 'ui/userTop.dart';
+import 'ui/notificationBellButton.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int waterTaken = 1250;
+  int waterTaken = 400;
   int waterNeed = 2500;
   int glass = 200;
 
@@ -37,81 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
         titleSpacing: 10,
         backgroundColor: Colors.white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: 40,
-              height: 40,
-              margin: EdgeInsets.only(right: 10),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Image.asset('images/watter.png'),
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  'Alon Zusman',
-                  style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  'Drinking Streak: 1 days',
-                  style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+        title: UserTop(),
         actions: <Widget>[
-          FlatButton(
-            onPressed: () {},
-            child: Stack(
-              overflow: Overflow.visible,
-              children: <Widget>[
-                Container(
-                  width: 50,
-                  child: Icon(
-                    Icons.notifications,
-                    color: Theme.of(context).accentColor,
-                    size: 35,
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  width: 20,
-                  height: 20,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Colors.red,
-                    ),
-                    width: 20,
-                    height: 20,
-                    child: Center(
-                      child: Text(
-                        '03',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 9,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          )
+          NotificationBellButton(),
         ],
       ),
       body: SingleChildScrollView(
@@ -145,58 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                   padding: EdgeInsets.only(top: 15),
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            '0 ML'.toUpperCase(),
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Text(
-                            "$waterNeed ML".toUpperCase(),
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                      LinearPercentIndicator(
-                        lineHeight: 8.0,
-                        percent: 0.7,
-                        linearStrokeCap: LinearStrokeCap.roundAll,
-                        backgroundColor:
-                            Theme.of(context).accentColor.withAlpha(30),
-                        progressColor: Theme.of(context).primaryColor,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 30),
-                      ),
-                      Text(
-                        'Water Drank'.toUpperCase(),
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontFamily: 'Bebas',
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'Just '+(max(waterNeed-waterTaken, 0)).toString()+'ML more today!',
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                
                 Divider(
                   height: 25,
                   color: Colors.grey[300],

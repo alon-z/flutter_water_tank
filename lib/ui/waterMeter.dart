@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class WaterMeter extends StatelessWidget {
-
-  WaterMeter(int) {
-    int waterTaken = 400;
-    int waterNeed = 2500;
+  int waterTaken;
+  int waterNeed;
+  WaterMeter(int waterTaken, int waterNeed) {
+    this.waterTaken = waterTaken;
+    this.waterNeed = waterNeed;
   }
 
   @override

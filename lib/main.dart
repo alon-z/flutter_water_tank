@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import 'ui/userTop.dart';
 import 'ui/notificationBellButton.dart';
+import 'ui/waterMeter.dart';
+import 'ui/statTile.dart';
 
 void main() => runApp(MyApp());
 
@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                   padding: EdgeInsets.only(top: 15),
                 ),
-                
+                WaterMeter(waterTaken, waterNeed),
                 Divider(
                   height: 25,
                   color: Colors.grey[300],
@@ -84,114 +84,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   child: Row(
                     children: <Widget>[
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Glasses'.toUpperCase(),
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: (waterTaken/glass).round().toString(),
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Theme.of(context).accentColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: ' * 200ml',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                      StatTile(
+                        amount: (waterTaken/glass).round(),
+                        title: "Glasses",
+                        unit: "* 200ml",
                       ),
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'Not Water'.toUpperCase(),
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '350',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Theme.of(context).accentColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: ' ML',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                      StatTile(
+                        amount: 350,
+                        title: "Not Water",
+                        unit: ' ML',
                       ),
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-                            Text(
-                              'Yesterday'.toUpperCase(),
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '2800',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Theme.of(context).accentColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: ' ml',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
+                      StatTile(
+                        amount: 2800,
+                        title: 'Yesterday',
+                        unit: ' ml',
+                      ),
                     ],
                   ),
                 ),
